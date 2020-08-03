@@ -1,0 +1,40 @@
+Q1) What are the advantages and disadvantages of each of the two scheduling policies? Also, give the advantages and disadvantages of the round robin scheduling policy originally implemented in Xinu.
+
+Ans) Advantage of Random Scheduler
+-- Low priority process will get a fair chance to execte.
+
+Disadvantage of Random Scheduler
+-- High priority process might be starved.
+
+Advantage of linux like scheduler
+
+-- Processes are scheduled based on priority rather than random value which ensures that higer priority process is scheduled before lower priority process.
+-- It is a fair scheduler. The process which are IO bound are given a fair chance to run by increasing their goodness value.
+
+Disadvantage of Linux like scheduler
+
+--It involves a lot of calculation and hence is heavy.
+
+Advantage of XINU Scheduler
+
+-- It compares the priorities of the process and hence there are less calculations involved.
+-- Each high priority processes get equal time.
+
+Disadvantage of XINU scheduler
+-- Low priority processes might have to wait for large amount of times.
+-- It depends highly on interval chosen and hence if low interval value os chosen cost of context switch will increase which will make it slower. 
+
+Q2) Describe when each of the schedulers run the NULL process.
+
+Random Scheduler: They will be scheduled when there is no process in the ready queue.
+Linux Like Scheduler: They will be scheduled when there is no process in the ready queue.
+XINU scheduler: Null process will be scheduled when there is no process in the ready queue.
+
+Q3) Assume that there are three processes P1, P2, P3 that will run forever without blocking. We want to allocate the following CPU times to each of them: 20% to P1, 30% to P2, and 50% to P3. Which priorities do we need to set to P1, P2, and P3 to accomplish this if we want to use the Random scheduler? Assume that those processes are the only ones running in the machine. Could you give a generalization of your result to n processes? Explain.
+
+P3-50, P2-30, P1-20. To schedule a process for half of the time means that the total sum of priority divided by two must be assigned as priority to that process. We simplify this into a equation as %of cpu utilization needed * sum of priorities/100. For example suppose there are 4 process and utilization rates are 40, 30, 15, 15, then 
+A 40 * 100/100 = 40
+B 30 * 100/100 = 30
+C 15 * 100/100 = 15
+D 15 * 100/100 = 15.
+Here we are assuming that sum of priorities of all process is exactly 100. 
